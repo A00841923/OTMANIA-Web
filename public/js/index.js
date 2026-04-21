@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
             Password: password.value
         };
 
-        const res = await fetch("https://otmania-api.onrender.com/login", {
+        const res = await fetch("http://localhost:3000/login", {
             method:"POST", 
             headers:{"Content-Type":"application/json"}, 
             body:JSON.stringify(credentials)
@@ -58,9 +58,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Login success handling
-        if(data.isLogin == true){
+        if(data.isLogin === true){
             errorMessage.textContent = "Login successful!";
-            sessionStorage.setItem("id", data.user.IDUser);
+            sessionStorage.setItem("iduser", data.user.IDUser);
             window.location = "./home.html";
         }
     }
