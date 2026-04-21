@@ -1,15 +1,17 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const id = sessionStorage.getItem("id");
+    const id = sessionStorage.getItem("iduser");
 
     if (!id) {
     console.error("No hay ID en sessionStorage");
     return;
 }
+console.log("SESSION:", sessionStorage);
+console.log("ID:", sessionStorage.getItem("iduser"));
 
 try {
-    const response = await fetch(`http://localhost:3000/users/profile/` + sessionStorage.getItem("id"));
+    const response = await fetch(`http://localhost:3000/users/${id}/profile`);
     const data = await response.json();
-
+    console.log(data);
 
     if (response.ok) {
         document.getElementById("username").innerText = data.nickname;
@@ -49,6 +51,6 @@ try {
 const logoutButton = document.querySelector(".btn-logout");
 if (logoutButton) {
     logoutButton.addEventListener("click", (e) => {
-        sessionStorage.removeItem("id");
+        sessionStorage.removeItem("iduser");
     });
 }

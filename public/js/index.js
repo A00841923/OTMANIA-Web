@@ -58,9 +58,17 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Login success handling
-        if(data.isLogin === true){
-            errorMessage.textContent = "Login successful!";
-            sessionStorage.setItem("iduser", data.user.IDUser);
+        if (data.isLogin === true) {
+            console.log("USER:", data.user);
+            const id = data.user.iduser;
+
+            if (!id) {
+                console.error("id user not found:", data.user);
+                window.location = "./index.html";
+                return;
+            }
+
+            sessionStorage.setItem("iduser", id);
             window.location = "./home.html";
         }
     }
