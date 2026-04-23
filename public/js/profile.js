@@ -9,7 +9,7 @@ console.log("SESSION:", sessionStorage);
 console.log("ID:", sessionStorage.getItem("iduser"));
 
 try {
-    const response = await fetch(`http://localhost:3000/users/${id}/profile`);
+    const response = await fetch(`http://localhost:3000/users/profile/${id}`);
     const data = await response.json();
     console.log(data);
 
