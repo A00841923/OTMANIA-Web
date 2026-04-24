@@ -254,3 +254,20 @@
             text-align: center;
             display: inline-block;
         }
+
+        #userType {
+            background: #f8f9fb;
+            color: #9aa0a6;
+        }
+
+        #userType:not(:invalid) {
+            color: #000;
+        }
+
+        #userType:hover {
+            background: #ffffff;
+        }
+
+        #userType:focus {
+            background: white;
+        }

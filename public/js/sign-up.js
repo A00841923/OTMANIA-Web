@@ -73,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
+            const userType = document.getElementById("userType").value;
             const res = await fetch("http://localhost:3000/send-code", {
                 method: "POST",
                 headers: {
@@ -84,7 +85,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     email,
                     password,
                     nickname,
-                    country
+                    country,
+                    userType
                 })
             });
 
@@ -92,9 +94,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (!res.ok) {
                 errorMessage.textContent = data.message;
+
+                // color dependiendo del error
+                if (data.message.includes("Admin")) {
+                    errorMessage.style.color = "orange";
+                    document.getElementById("userType").value = "3"; // reset a external
+                } else {
+                    errorMessage.style.color = "#dc3545";
+                }
+
                 return;
             }
-
+            
             // Save email for verification step
             currentEmail = email;
 
