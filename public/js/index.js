@@ -58,9 +58,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Login success handling
-        if (data.isLogin === true) {
+        if (data.isLogin === true){
             console.log("USER:", data.user);
+
             const id = data.user.iduser;
+            const type = data.user.idusertype;
+            const company = data.user.idcompany;
 
             if (!id) {
                 console.error("id user not found:", data.user);
@@ -69,6 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             sessionStorage.setItem("iduser", id);
+            sessionStorage.setItem("userType", type);
+            sessionStorage.setItem("companyId", company);
+
             window.location = "./home.html";
         }
     }

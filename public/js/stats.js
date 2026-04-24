@@ -1,9 +1,20 @@
 const API_URL = "http://localhost:3000/api/stats";
 
+const iduser = sessionStorage.getItem("iduser");
+const userType = sessionStorage.getItem("userType");
+const companyId = sessionStorage.getItem("companyId");
 
 async function loadCards() {
     try {
-        const res = await fetch(`${API_URL}/cards`);
+        console.log(iduser, userType, companyId);
+        const res = await fetch(`${API_URL}/cards`, {
+            headers: {
+                "Content-Type": "application/json",
+                "iduser": iduser,
+                "usertype": userType,
+                "companyid": companyId
+            }
+        });
         const data = await res.json();
 
         document.getElementById("card1-value").textContent = data.users;
@@ -19,7 +30,14 @@ async function loadCards() {
 
 async function loadBarChart() {
     try {
-        const res = await fetch(`${API_URL}/performance-by-company`);
+        const res = await fetch(`${API_URL}/performance-by-company`, {
+            headers: {
+            "Content-Type": "application/json",
+            "iduser": iduser,
+            "usertype": userType,
+            "companyid": companyId
+            }
+        });
         const data = await res.json();
 
         const ctx = document.getElementById("barChart");
@@ -52,7 +70,14 @@ async function loadBarChart() {
 
 async function loadPieChart() {
     try {
-        const res = await fetch(`${API_URL}/task-outcomes`);
+        const res = await fetch(`${API_URL}/task-outcomes`, {
+            headers: {
+            "Content-Type": "application/json",
+            "iduser": iduser,
+            "usertype": userType,
+            "companyid": companyId
+            }
+        });
         const data = await res.json();
 
         const ctx = document.getElementById("pieChart");
